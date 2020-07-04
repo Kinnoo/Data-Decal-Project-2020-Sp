@@ -78,3 +78,10 @@ data readspeed;
    proc print data = money noobs;
    run;
    
+   data logitplot;
+      do p=0 to 1 by 0.05;
+      Logit = LOG(p/(1-p));
+      output;
+      end;
+   run;
+      
