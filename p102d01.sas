@@ -163,7 +163,7 @@ run;
 
 
 libname Survey2018 '/folders/myfolders';
-data voter ;
+data Survey2018.voter ;
   input Age Gender $ (Ques1-Ques5)($1.);
   datalines;
 23 M 15243
@@ -174,8 +174,9 @@ data voter ;
 62 F 33333
 68 M 44122
 ;
-run;
 
+libname Survey2018 '/folders/myfolders';
+title "Computing Average Age"
 proc means data= Survey2018.voter;
   var Age;
 run;
