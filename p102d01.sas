@@ -85,3 +85,37 @@ data readspeed;
       end;
    run;
       
+      
+      
+   data logitplot;
+do p = 0 to 1 by .05;
+ logit = log(p / ( 1 - p));
+output;
+end;
+run;
+goptions reset=all
+ftext='arial'
+htext=1.0
+ftitle='arial/bo'
+htitle=1.5
+colors=(black);
+symbol v=none i=sm; 
+proc gplot data = logitplot;
+title 'Logit Plot';
+plot logit * p;
+run;
+quit;
+
+
+data monthsales;
+   input month sales @@;
+   SumSales + sales; 
+   format Sales dollar8.2 SumSales dollar10.2;
+   datalines;
+   1 4000 2 5000 3 . 4 5500 5 5000 6 6000 7 6500 8 4500
+   9 5100 10 5700 11 6500 12 7500
+   ;
+   run;
+   proc print data = monthsales noobs;
+      title 'Sales to date';
+   run; 
