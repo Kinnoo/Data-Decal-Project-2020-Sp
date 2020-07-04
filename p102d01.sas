@@ -60,7 +60,21 @@ data readspeed;
    250 255 256 300 244 268 301 322 256 333
    267 275 256 320 250 340 345 290 280 300
    350 350 340 290 377 401 380 310 299 399;
+   run;
    title "Reading speeds of three different methods";
    proc print data = readspeed;
+   run;
+   
+   
+   data money;
+      do until (deposit > 30000);
+         deposit + 1000;
+         deposit + deposit * 0.0425;
+         year + 1;
+         output;
+      end;
+   run;
+   title "Years count until $30000";
+   proc print data = money noobs;
    run;
    
