@@ -160,3 +160,23 @@ Ques2 = 'Congress is doing a good job'
 Ques3 = 'Taxes are too high'
 Ques4 = 'Government should cut spending';
 run;
+
+
+libname Survey2018 '/folders/myfolders';
+data voter ;
+  input Age Gender $ (Ques1-Ques5)($1.);
+  datalines;
+23 M 15243
+30 F 11123
+42 M 23555
+48 F 55541
+55 F 42232
+62 F 33333
+68 M 44122
+;
+run;
+
+proc means data= Survey2018.voter;
+  var Age;
+run;
+
