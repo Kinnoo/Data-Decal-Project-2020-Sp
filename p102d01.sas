@@ -34,3 +34,16 @@ title "Frequencies";
 proc freq data=vote;
    tables Party / nocum;
 run;
+
+data school;
+   input Age Quiz : $1. Midterm Final;
+   if Age eq 13 then Grade = 6;
+   else if Age eq 13 then Grade = 8;
+   if Quiz eq 'A' then QuizGrade = 95;
+   else if Quiz eq 'B' then QuizGrade = 85;
+   else if Quiz eq 'C' then QuizGrade = 75;
+   else if Quiz eq 'D' then QuizGrade = 70;
+   else if Quiz eq 'E' then QuizGrade = 65;
+   else if Quiz eq 'F' then QuizGrade = 55;
+   CourseGrade = 0.2 * QuizGrade + 0.3 * Midterm + 0.5 * Final;
+   
