@@ -119,3 +119,44 @@ data monthsales;
    proc print data = monthsales noobs;
       title 'Sales to date';
    run; 
+   
+   
+   
+   
+proc format;
+value umar 0-30 = 'less than 30'
+30-50 = '30 to 50'
+50-70 = '50 to 70'
+70-high = 'above 70';
+value $politics 'D' = 'Democrat'
+'R' = 'Republican';
+value $likert '1' = 'Strongly Disagree'
+ '2'='Disagree'
+ '3'='No Opinion' 
+ '4'='Agree' 
+ '5'='Strongly Agree';
+ run;
+data voter;
+infile datalines;
+input Age Party$ (Ques1-Ques4)($1.+1);
+datalines;
+23 D 1 1 2 2
+45 R 5 5 4 1
+67 D 2 4 3 3
+39 R 4 4 4 4
+19 D 2 1 2 1
+75 D 3 3 2 3
+57 R 4 3 4 4
+;
+run;
+PROC PRINT noobs;
+RUN;
+proc freq;
+format Age umar.
+Party $politics.
+Ques1-Ques4 $likert.;
+label Ques1 = 'The president is doing a good job'
+Ques2 = 'Congress is doing a good job'
+Ques3 = 'Taxes are too high'
+Ques4 = 'Government should cut spending';
+run;
