@@ -47,3 +47,20 @@ data school;
    else if Quiz eq 'F' then QuizGrade = 55;
    CourseGrade = 0.2 * QuizGrade + 0.3 * Midterm + 0.5 * Final;
    
+
+
+data readspeed;
+   do method = 'A','B','C';
+      do index = 1 t0 10;
+      input score @;
+      output;
+      end;
+   end;
+   datalines;
+   250 255 256 300 244 268 301 322 256 333
+   267 275 256 320 250 340 345 290 280 300
+   350 350 340 290 377 401 380 310 299 399;
+   title "Reading speeds of three different methods";
+   proc print data = readspeed;
+   run;
+   
