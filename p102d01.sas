@@ -181,3 +181,18 @@ proc means data= Survey2018.voter;
   var Age;
 run;
 
+data monthsales;
+ input month sales @@;
+ /* added lines to the program */
+ SumSales + sales; /* adding like this ignores the missing values in
+ sales, SumSales is retained and also initialized to 0 */
+
+ format Sales dollar8.2 SumSales dollar10.2;
+datalines;
+1 4000 2 5000 3 . 4 5500 5 5000 6 6000 7 6500 8 4500
+9 5100 10 5700 11 6500 12 7500
+;
+run;
+proc print data = monthsales noobs;
+title 'Sales to date';
+run; 
