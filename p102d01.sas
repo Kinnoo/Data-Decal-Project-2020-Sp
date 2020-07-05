@@ -217,3 +217,24 @@ title "Reading speeds of three different methods" ;
 proc print data = readspeed noobs;
 var Method score;
 run;
+
+
+libname perm '/folders/myfolders';
+	data perm.Survey2018 ;
+	  input Age Gender $ (Ques1-Ques5)($1.);
+	  datalines;
+	23 M 15243
+	30 F 11123
+	42 M 23555
+	48 F 55541
+	55 F 42232
+	62 F 33333
+	68 M 44122
+	;
+	
+
+	libname perm '/folders/myfolders';
+	title "Computing Average Age";
+	proc means data= perm.Survey2018;
+	  var Age;
+	run;
